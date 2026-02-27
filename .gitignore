@@ -36,3 +36,8 @@ _ide_helper_models.php
 /var/
 /.env.dev
 /compose.override.yaml
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
