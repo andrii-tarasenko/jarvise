@@ -18,13 +18,14 @@ class RecordGridReadingCommandHandler
         $grid = new Grid();
         $grid->setGridPower($command->gridPower);
         $grid->setSolarPower($command->solarPower);
-        $grid->setgridPowerDay($command->gridPowerDay);
-        $grid->setInvertorPowerDay($command->invertorPowerDay);
-        $grid->setGridPowerWeek($command->gridPowerWeek);
-        $grid->setInvertorPowerWeel($command->invertorPowerWeek);
-        $grid->setGridPowerMonth($command->gridPowerMonth);
         $grid->setPrice($command->price);
-        $grid->setSolalPrice($command->solalPrice);
+        // Assuming setters will be created or exist based on the entity
+        if (method_exists($grid, 'setTotalSolarPrice')) {
+             $grid->setTotalSolarPrice($command->totalSolarPrice);
+        }
+        if (method_exists($grid, 'setTotalGridPrice')) {
+             $grid->setTotalGridPrice($command->totalGridPrice);
+        }
 
         $this->repository->save($grid);
     }

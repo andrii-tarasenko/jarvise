@@ -41,13 +41,9 @@ final class GridController extends AbstractController
         $command = new RecordGridReadingCommand(
             gridPower: $data['grid_power'] ?? null,
             solarPower: $data['solar_power'] ?? null,
-            gridPowerDay: $data['grid_power_day'] ?? null,
-            invertorPowerDay: $data['invertor_power_day'] ?? null,
-            gridPowerWeek: $data['grid_power_week'] ?? null,
-            invertorPowerWeek: $data['invertor_power_week'] ?? null,
-            gridPowerMonth: $data['grid_power_month'] ?? null,
             price: $data['price'] ?? 0.0,
-            solalPrice: $data['solal_price'] ?? 0.0
+            totalSolarPrice: $data['total_solar_price'] ?? null,
+            totalGridPrice: $data['total_grid_price'] ?? null
         );
 
         $this->messageBus->dispatch($command);
