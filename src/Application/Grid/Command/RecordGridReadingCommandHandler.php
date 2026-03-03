@@ -17,15 +17,22 @@ class RecordGridReadingCommandHandler
     {
         $grid = new Grid();
         $grid->setGridPower($command->gridPower);
+        $grid->setGridVoltage($command->voltage);
+        $grid->setGridCurrent($command->current);
+        $grid->setGridEnergy($command->energy);
+        $grid->setGridFrequency($command->frequency);
+        $grid->setGridPowerFactor($command->power_f);
         $grid->setSolarPower($command->solarPower);
-        $grid->setPrice($command->price);
+        $grid->setPrice();
         // Assuming setters will be created or exist based on the entity
-        if (method_exists($grid, 'setTotalSolarPrice')) {
-             $grid->setTotalSolarPrice($command->totalSolarPrice);
-        }
-        if (method_exists($grid, 'setTotalGridPrice')) {
-             $grid->setTotalGridPrice($command->totalGridPrice);
-        }
+
+        //TODO calculate total price
+//        if (method_exists($grid, 'setTotalSolarPrice')) {
+//             $grid->setTotalSolarPrice($command->totalSolarPrice);
+//        }
+//        if (method_exists($grid, 'setTotalGridPrice')) {
+//             $grid->setTotalGridPrice($command->totalGridPrice);
+//        }
 
         $this->repository->save($grid);
     }

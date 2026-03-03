@@ -22,7 +22,6 @@ class GetGridReadingsQueryHandler
         $grids = $qb->select('g')
             ->from(Grid::class, 'g')
             ->orderBy('g.id', 'DESC')
-            ->setMaxResults($query->limit)
             ->getQuery()
             ->getResult();
 
@@ -32,10 +31,14 @@ class GetGridReadingsQueryHandler
                 $grid->getId(),
                 $grid->getCreatedAt()->format('Y-m-d H:i:s'),
                 $grid->getGridPower(),
+                (float) $grid->getGridVoltage() > 0,
+                $grid->getGridVoltage(),
+                $grid->getGridCurrent(),
+                $grid->getGridEnergy(),
+                $grid->getGridFrequency(),
+                $grid->getGridPowerFactor(),
                 $grid->getSolarPower(),
-                $grid->getPrice(),
-                method_exists($grid, 'getTotalSolarPrice') ? $grid->getTotalSolarPrice() : null,
-                method_exists($grid, 'getTotalGridPrice') ? $grid->getTotalGridPrice() : null
+                $grid->getPrice()
             );
         }
 

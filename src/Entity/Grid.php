@@ -25,6 +25,21 @@ class Grid
     private ?float $grid_power = null;
 
     #[ORM\Column(nullable: true)]
+    private ?float $voltage = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $current = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $energy = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $frequency = null;
+
+    #[ORM\Column(nullable: true)]
+    private ?float $power_f = null;
+
+    #[ORM\Column(nullable: true)]
     private ?float $solar_power = null;
 
     #[ORM\Column]
@@ -46,7 +61,7 @@ class Grid
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeImmutable $createdAt): static
+    public function setCreatedAt($createdAt): static
     {
         $this->createdAt = $createdAt;
 
@@ -63,6 +78,66 @@ class Grid
         $this->grid_power = $grid_power;
 
         return $this;
+    }
+
+    public function setGridVoltage(?float $voltage): static
+    {
+        $this->voltage = $voltage;
+
+        return $this;
+    }
+
+    public function getGridVoltage(): ?float
+    {
+        return $this->voltage;
+    }
+
+    public function setGridCurrent(?float $current): static
+    {
+        $this->current = $current;
+
+        return $this;
+    }
+
+    public function getGridCurrent(): ?float
+    {
+        return $this->current;
+    }
+
+    public function setGridEnergy(?float $energy): static
+    {
+        $this->energy = $energy;
+
+        return $this;
+    }
+
+    public function getGridEnergy(): ?float
+    {
+        return $this->energy;
+    }
+
+    public function setGridFrequency(?float $frequency): static
+    {
+        $this->frequency = $frequency;
+
+        return $this;
+    }
+
+    public function getGridFrequency(): ?float
+    {
+        return $this->frequency;
+    }
+
+    public function setGridPowerFactor(?float $power_f): static
+    {
+        $this->power_f = $power_f;
+
+        return $this;
+    }
+
+    public function getGridPowerFactor(): ?float
+    {
+        return $this->power_f;
     }
 
     public function getSolarPower(): ?float
@@ -82,9 +157,9 @@ class Grid
         return $this->price;
     }
 
-    public function setPrice(float $price): static
+    public function setPrice(): static
     {
-        $this->price = $price;
+        $this->price = 4.5;
 
         return $this;
     }
