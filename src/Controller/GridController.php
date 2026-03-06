@@ -18,7 +18,8 @@ final class GridController extends AbstractController
 {
     public function __construct(
         private MessageBusInterface $messageBus,
-        private LoggerInterface $logger // <--- ДОДАЛИ ЛОГЕР
+        #[Autowire(service: 'monolog.logger.dev_custom')]
+        private LoggerInterface $devCustomLogger,
     ) {}
 
     #[Route('/readings', name: 'api_grid_readings_get', methods: ['GET'])]
@@ -50,9 +51,9 @@ final class GridController extends AbstractController
     {
         $data = json_decode($request->getContent(), true);
 
-//        $this->logger->info('Got data from esp32', [
-//            'raw_data' => $data,
-//        ]);
+        $this->devCustomLogger->info('Got data from esp32', [
+            'raw_data' => $data,
+        ]);
 
         if (!$data) {
             return $this->json(['error' => 'Invalid JSON'], 400);
